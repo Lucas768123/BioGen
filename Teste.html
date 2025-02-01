@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas Rodrigo BioGen</title>
+    <link rel="icon" href="Ico.png" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-bottom: 5px solid #2e8b57;
+        }
+        h1 {
+            margin: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .bio, .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: left;
+        }
+        .bio h2, .form-container h2 {
+            color: #4CAF50;
+        }
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            color: #555;
+            font-style: italic;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BioGen</h1>
+    </header>
+
+    <div class="container">
+        <div class="bio">
+            <h2>Sobre o Gerador</h2>
+            <p>Bem-vindo ao Gerador de Biografia! Preencha seus dados abaixo e crie uma biografia personalizada.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Preencha seus dados</h2>
+            <form id="bioForm">
+                <label for="name">Nome completo:</label>
+                <input type="text" id="name" required>
+
+                <label for="age">Idade:</label>
+                <input type="text" id="age" required>
+
+                <label for="profession">Profissão:</label>
+                <input type="text" id="profession" required>
+
+                <label for="location">Cidade/Estado:</label>
+                <input type="text" id="location" required>
+
+                <label for="interests">Interesses:</label>
+                <textarea id="interests" rows="4" required></textarea>
+
+                <label for="hobbies">Hobbies:</label>
+                <input type="text" id="hobbies" required>
+
+                <label for="goals">Objetivos para o futuro:</label>
+                <textarea id="goals" rows="4" required></textarea>
+
+                <button type="submit">Gerar Biografia</button>
+            </form>
+        </div>
+
+        <div class="bio" id="bioResult" style="display: none;">
+            <h2>Biografia Gerada</h2>
+            <p id="bioText"></p>
+            <p class="message">Obrigado por usar o Gerador de Biografia! Esperamos que tenha gostado de criar sua biografia personalizada.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Gerador de Biografia</p>
+    </footer>
+
+    <script>
+        document.getElementById('bioForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var name = document.getElementById('name').value;
+            var age = document.getElementById('age').value;
+            var profession = document.getElementById('profession').value;
+            var location = document.getElementById('location').value;
+            var interests = document.getElementById('interests').value;
+            var hobbies = document.getElementById('hobbies').value;
+            var goals = document.getElementById('goals').value;
+
+            var introOptions = [
+                `Olá! Meu nome é ${name}, tenho ${age} anos e trabalho como ${profession}.`,
+                `Prazer, sou ${name}, tenho ${age} anos e atuo na área de ${profession}.`,
+                `Oi, sou ${name}, tenho ${age} anos e sou apaixonado(a) pelo meu trabalho como ${profession}.`
+            ];
+
+            var locationOptions = [
+                `Moro atualmente em ${location}, um lugar cheio de histórias e cultura.`,
+                `Resido em ${location}, um local que me inspira diariamente.`,
+                `Minha casa é em ${location}, onde construo minha trajetória com dedicação.`
+            ];
+
+            var interestsOptions = [
+                `Tenho grande interesse por ${interests} e sempre busco aprender mais sobre isso.`,
+                `Me interesso muito por ${interests}, pois acredito que esse conhecimento agrega muito à minha vida.`,
+                `Uma das minhas maiores paixões é ${interests}, algo que me motiva a crescer diariamente.`
+            ];
+
+            var hobbiesOptions = [
+                `Nos meus momentos livres, gosto de me dedicar a ${hobbies}.`,
+                `Meus passatempos preferidos incluem ${hobbies}.`,
+                `Sempre que posso, reservo um tempo para ${hobbies}, algo que me traz muita alegria.`
+            ];
+
+            var goalsOptions = [
+                `No futuro, pretendo ${goals} e estou me esforçando para alcançar esse objetivo.`,
+                `Meus planos para o futuro envolvem ${goals}, algo que me motiva a seguir em frente.`,
+                `Tenho grandes sonhos, e um deles é ${goals}, algo pelo qual luto diariamente.`
+            ];
+
+            function getRandomElement(arr) {
+                return arr[Math.floor(Math.random() * arr.length)];
+            }
+
+            var bio = `
+                ${getRandomElement(introOptions)} 
+                ${getRandomElement(locationOptions)} 
+                ${getRandomElement(interestsOptions)} 
+                ${getRandomElement(hobbiesOptions)} 
+                ${getRandomElement(goalsOptions)}
+            `;
+
+            document.getElementById('bioText').textContent = bio;
+            document.getElementById('bioResult').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
